@@ -1,4 +1,5 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 // Step1
@@ -9,6 +10,7 @@ function AppContextProvider({ children }) {
     const [posts, setPosts] = useState([])
     const [page, setPage] = useState(1)
     const [totalPages, setTotalPages] = useState(null);
+    const navigate=useNavigate();
 
     const baseUrl = "https://codehelp-apis.vercel.app/api/get-blogs"
 
@@ -20,7 +22,7 @@ function AppContextProvider({ children }) {
             url+=`&tag=${tag}`
         }
         if(category){
-            url+=`&tag=${category}`;
+            url+=`&category=${category}`;
         }
         try {
             const result = await fetch(url);
@@ -39,14 +41,11 @@ function AppContextProvider({ children }) {
         setLoading(false);
     }
 
-    useEffect(()=>{
-        fetchBlogPosts(page);
-    },[])
-
 
     function handlerPageChange(page) {
+        navigate({search:`?page=${page}`})
         setPage(page);
-        fetchBlogPosts(page);
+
     }
 
 
