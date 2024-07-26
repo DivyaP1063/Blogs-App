@@ -1,4 +1,5 @@
 Read-Only Blogs App
+
 A read-only blogs application built with React, Redux, and Tailwind CSS. This app allows users to explore and read blog posts, view related and tagged blogs, and browse blogs by category. It features intuitive navigation with next and previous buttons to enhance the reading experience.
 
 Features
